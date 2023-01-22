@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Deck from "./Deck";
+import DeckDisplay from "./DeckDisplay";
 
 import { listDecks } from "../utils/api";
 import ErrorMessage from "../Layout/ErrorMessage";
@@ -20,7 +20,7 @@ export const DeckList = () => {
     return <ErrorMessage error={error} />;
   }
 
-  const list = decks.map((deck) => <Deck key={deck.id} deck={deck} />);
+  const list = decks.map((deck) => <DeckDisplay key={deck.id} deck={deck} />);
 
   return (
     <main className="container">
