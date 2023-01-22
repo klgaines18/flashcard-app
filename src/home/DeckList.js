@@ -24,7 +24,7 @@ export const DeckList = () => {
 
   return (
     <main className="container">
-      <section className="row">{list}</section>
+      <section className="col">{list}</section>
     </main>
   );
 };
