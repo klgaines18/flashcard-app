@@ -1,20 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { deleteDeck } from "../utils/api";
 
-export const DeckDisplay = ({ deck = { cards: [] } }) => (
-  <article className="card">
-    <div className="card-body ">
-      <h2 className="card-title">
-        {deck.name}
-      </h2>
-      <h6 class="card-subtitle mb-2 text-muted">Card amount</h6>
-      <p className="card-text">{deck.description}</p>
-      <a href="#" class="card-link">View</a>
-      <a href="#" class="card-link">Study</a>
-      <a href="#" class="card-link">Delete</a>
-    </div>
-  </article>
-);
+export const DeckDisplay = ({ deck = { cards: [] } }) => {
+  const history = useHistory();
+
+  const handleDelete = async (id) => {
+    const result = window.confirm("Delete this deck? You will not be able to recover it.");
+    if (result) {
+      await deleteDeck(id);
+      history.push("/");
+    }
+  };
+
+  return (
+    <article className="card">
+      <div className="card-body ">
+        <h2 className="card-title">
+          {deck.name}
+        </h2>
+        <h6 class="card-subtitle mb-2 text-muted">Card amount</h6>
+        <p className="card-text">{deck.description}</p>
+        <Link to={`/decks/${deck.id}`} class="btn btn-primary mx-2">View</Link>
+        <Link to={`/decks/${deck.id}/study`} class="btn btn-primary mx-2">Study</Link>
+        <button className="btn btn-danger mx-2" onClick={handleDelete}>
+            Delete
+        </button>
+      </div>
+    </article>
+  )
+
+};
 
 export default DeckDisplay;
 
