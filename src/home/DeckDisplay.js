@@ -10,6 +10,7 @@ export const DeckDisplay = ({ deck = { cards: [] } }) => {
     if (result) {
       await deleteDeck(deck.id);
       history.push("/");
+      window.location.reload();
     }
   };
 
