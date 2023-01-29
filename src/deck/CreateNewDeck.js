@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { createDeck } from "../utils/api";
+import { createDeck, listDecks } from "../utils/api";
 
-function CreateNewDeck() {
+function CreateNewDeck({setDecks}) {
   const initFormState = {
     name: "Deck Name",
     description: "Brief description of the deck"
@@ -19,9 +19,10 @@ function CreateNewDeck() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    createDeck(formData).then(setNewDeck)
+    await createDeck(formData).then(setNewDeck)
+    await listDecks().then(setDecks);
     history.push(`/decks/${newDeck.id}`)
   };
 

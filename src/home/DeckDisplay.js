@@ -1,16 +1,16 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { deleteDeck } from "../utils/api";
+import { deleteDeck, listDecks } from "../utils/api";
 
-export const DeckDisplay = ({ deck = { cards: [] } }) => {
+export const DeckDisplay = ({ deck = { cards: [] }, setDecks }) => {
   const history = useHistory();
 
   const handleDelete = async (id) => {
     const result = window.confirm("Delete this deck? You will not be able to recover it.");
     if (result) {
       await deleteDeck(deck.id);
+      await listDecks().then(setDecks);
       history.push("/");
-      window.location.reload();
     }
   };
 

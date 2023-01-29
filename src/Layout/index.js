@@ -7,6 +7,7 @@ import CreateDeckBtn from "./CreateDeckBtn";
 import CreateNewDeck from "../deck/CreateNewDeck";
 import { listDecks } from "../utils/api";
 import ErrorMessage from "./ErrorMessage";
+import Deck from "../deck/Deck";
 
 function Layout() {
   const [decks, setDecks] = useState([]);
@@ -32,10 +33,13 @@ function Layout() {
         <Switch>
           <Route exact path="/">
             <CreateDeckBtn />
-            <DeckList decks={decks} />
+            <DeckList decks={decks} setDecks={setDecks} />
           </Route>
           <Route path="/decks/new">
-            <CreateNewDeck />
+            <CreateNewDeck setDecks={setDecks} />
+          </Route>
+          <Route path="/decks/:deckId">
+            <Deck />
           </Route>
           <Route>
             <NotFound />

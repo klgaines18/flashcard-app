@@ -2,8 +2,8 @@ import React from "react";
 import DeckDisplay from "./DeckDisplay";
 
 
-export const DeckList = ({decks}) => {
-  const list = decks.map((deck) => <DeckDisplay key={deck.id} deck={deck} />);
+export const DeckList = ({decks, setDecks}) => {
+  const list = decks.map((deck) => <DeckDisplay key={deck.id} deck={deck} setDecks={setDecks} />);
 
   return (
     <div>
