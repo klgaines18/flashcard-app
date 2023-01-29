@@ -23,9 +23,9 @@ export const DeckList = () => {
   const list = decks.map((deck) => <DeckDisplay key={deck.id} deck={deck} />);
 
   return (
-    <main className="container">
+    <div>
       <section className="col">{list}</section>
-    </main>
+    </div>
   );
 };
 

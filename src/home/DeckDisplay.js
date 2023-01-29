@@ -8,7 +8,7 @@ export const DeckDisplay = ({ deck = { cards: [] } }) => {
   const handleDelete = async (id) => {
     const result = window.confirm("Delete this deck? You will not be able to recover it.");
     if (result) {
-      await deleteDeck(id);
+      await deleteDeck(deck.id);
       history.push("/");
     }
   };
@@ -19,7 +19,7 @@ export const DeckDisplay = ({ deck = { cards: [] } }) => {
         <h2 className="card-title">
           {deck.name}
         </h2>
-        <h6 class="card-subtitle mb-2 text-muted">Card amount</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{deck.cards.length} cards</h6>
         <p className="card-text">{deck.description}</p>
         <Link to={`/decks/${deck.id}`} class="btn btn-primary mx-2">View</Link>
         <Link to={`/decks/${deck.id}/study`} class="btn btn-primary mx-2">Study</Link>
