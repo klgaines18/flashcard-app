@@ -36,19 +36,23 @@ function StudyDeck () {
     );
   }
 
-  return (
-    <div className="container">
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item"><Link to={`/`}>Home</Link></li>
-          <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
-          <li className="breadcrumb-item active" aria-current="page">Study</li>
-        </ol>
-      </nav>
-      <h1>{deck.name}: Study</h1>
-      <StudyCard cards={cards} />
-    </div>
-  )
+  if (deck.id) {
+    return (
+      <div className="container">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item"><Link to={`/`}>Home</Link></li>
+            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+            <li className="breadcrumb-item active" aria-current="page">Study</li>
+          </ol>
+        </nav>
+        <h1>{deck.name}: Study</h1>
+        <StudyCard cards={cards} />
+      </div>
+    )
+  } else {
+    return <p>Loading...</p>
+  }
 }
 
 export default StudyDeck
