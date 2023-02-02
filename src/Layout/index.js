@@ -5,25 +5,11 @@ import NotFound from "./NotFound";
 import DeckList from "../home/DeckList";
 import CreateDeckBtn from "./CreateDeckBtn";
 import CreateNewDeck from "../deck/CreateNewDeck";
-import { listDecks } from "../utils/api";
-import ErrorMessage from "./ErrorMessage";
 import Deck from "../deck/Deck";
 
 function Layout() {
   const [decks, setDecks] = useState([]);
-  const [error, setError] = useState(undefined);
 
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    listDecks(abortController.signal).then(setDecks).catch(setError);
-
-    return () => abortController.abort();
-  }, []);
-
-  if (error) {
-    return <ErrorMessage error={error} />;
-  }
   
   return (
     <>
@@ -39,7 +25,7 @@ function Layout() {
             <CreateNewDeck setDecks={setDecks} />
           </Route>
           <Route path="/decks/:deckId">
-            <Deck />
+            <Deck setDecks={setDecks} />
           </Route>
           <Route>
             <NotFound />
