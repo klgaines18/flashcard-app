@@ -4,9 +4,7 @@ import { readCard, readDeck } from "../utils/api";
 import Nextbtn from "./NextBtn";
 
 
-function StudyCard() {
-  const [deck, setDeck] = useState({})
-  const [cards, setCards] = useState({})
+function StudyCard({cards}) {
   const [card, setCard] = useState({})
   const [cardNum, setCardNum] = useState(1)
   const [lastCard, setLastCard] = useState(false)
@@ -15,19 +13,7 @@ function StudyCard() {
   const { deckId } = useParams(); 
   const history = useHistory();
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    readDeck(deckId, abortController.signal)
-      .then(setDeck)
-
-    return () => abortController.abort();
-  }, [deckId]);
-
-  useEffect(() => {
-    if(deck.id) {
-      setCards(deck.cards)
-    }
-  }, [deck.id])
+  
 
   useEffect(() => {
     if(cards.length) {

@@ -7,6 +7,8 @@ function Nextbtn({handleNext, cardFront}) {
         Next
       </button>
     )
+  } else {
+    return null
   }
 }
 
