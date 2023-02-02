@@ -20,10 +20,10 @@ export const DeckDisplay = ({ deck = { cards: [] }, setDecks }) => {
         <h2 className="card-title">
           {deck.name}
         </h2>
-        <h6 class="card-subtitle mb-2 text-muted">{deck.cards.length} cards</h6>
+        <h6 className="card-subtitle mb-2 text-muted">{deck.cards.length} cards</h6>
         <p className="card-text">{deck.description}</p>
-        <Link to={`/decks/${deck.id}`} class="btn btn-primary mx-2">View</Link>
-        <Link to={`/decks/${deck.id}/study`} class="btn btn-primary mx-2">Study</Link>
+        <Link to={`/decks/${deck.id}`} className="btn btn-primary mx-2">View</Link>
+        <Link to={`/decks/${deck.id}/study`} className="btn btn-primary mx-2">Study</Link>
         <button className="btn btn-danger mx-2" onClick={handleDelete}>
             Delete
         </button>
