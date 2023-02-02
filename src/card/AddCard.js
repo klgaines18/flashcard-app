@@ -16,12 +16,6 @@ function AddCard() {
   const { deckId } = useParams(); 
 
   useEffect(() => {
-    if (newCard.id) {
-      history.push(`/decks/${deckId}`)
-    }
-  }, [newCard]);
-
-  useEffect(() => {
     readDeck(deckId).then(setDeck)
   }, [])
 
@@ -35,7 +29,14 @@ function AddCard() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createCard(deckId, formData).then(setNewCard)
+    setFormData({ ...initFormState });
   };
+
+  const handleDone  = async (event) => {
+    event.preventDefault();
+    await createCard(deckId, formData).then(setNewCard)
+    history.push(`/decks/${deckId}`)
+  }
 
 
   return (
@@ -47,7 +48,7 @@ function AddCard() {
           <li className="breadcrumb-item active" aria-current="page">Add Card</li>
         </ol>
       </nav>
-      <h1>Edit Deck</h1>
+      <h3>{deck.name}: Add Card</h3>
       <form onSubmit={handleSubmit} name="createDeck">
         <div className="form-group">
           <label for="front">Front</label>
@@ -73,8 +74,8 @@ function AddCard() {
             rows="5"
           />
         </div>
-        <Link to={`/decks/${deckId}`} className="btn btn-secondary mx-2">Cancel</Link>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button onClick={handleDone} className="btn btn-secondary mx-2">Done</button>
+        <button type="submit" className="btn btn-primary">Save</button>
       </form>
     </div>
   )
