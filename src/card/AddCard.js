@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { createCard, readCard, readDeck } from "../utils/api";
-import ErrorMessage from "../Layout/ErrorMessage";
+import CardForm from "./CardForm";
 
 function AddCard() {
   const initFormState = {
@@ -19,14 +19,7 @@ function AddCard() {
     readDeck(deckId).then(setDeck)
   }, [])
 
-  const handleChange = ({ target }) => {
-    setFormData({
-      ...formData,
-      [target.name]: target.value,
-    });
-  };
-
-  const handleSubmit = async (event) => {
+  const handleSave = async (event) => {
     event.preventDefault();
     await createCard(deckId, formData).then(setNewCard)
     setFormData({ ...initFormState });
@@ -49,34 +42,9 @@ function AddCard() {
         </ol>
       </nav>
       <h3>{deck.name}: Add Card</h3>
-      <form onSubmit={handleSubmit} name="createDeck">
-        <div className="form-group">
-          <label for="front">Front</label>
-          <textarea 
-            type="text" 
-            className="form-control" 
-            id="front"
-            name="front"
-            onChange={handleChange}
-            value={formData.front}
-            rows="5"
-          />
-        </div>
-        <div className="form-group">
-          <label for="back">Back</label>
-          <textarea 
-            type="text" 
-            className="form-control" 
-            id="back" 
-            name="back"
-            onChange={handleChange}
-            value={formData.back}
-            rows="5"
-          />
-        </div>
-        <button onClick={handleDone} className="btn btn-secondary mx-2">Done</button>
-        <button type="submit" className="btn btn-primary">Save</button>
-      </form>
+      <CardForm formData={formData} setFormData={setFormData} />
+      <button onClick={handleDone} className="btn btn-secondary mx-2">Done</button>
+      <button onClick={handleSave} className="btn btn-primary">Save</button>
     </div>
   )
 }

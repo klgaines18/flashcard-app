@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function CreateDeckBtn() {
   return (
     <div className="container">
-      <Link to={`/decks/new`} class="btn btn-secondary">Create Deck</Link>
+      <Link to={`/decks/new`} className="btn btn-secondary">Create Deck</Link>
     </div>
   )
 }
