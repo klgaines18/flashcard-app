@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { deleteDeck, listDecks, readDeck } from "../utils/api";
+import { readDeck } from "../utils/api";
 import StudyCard from "../card/StudyCard";
 import ErrorMessage from "../Layout/ErrorMessage";
 

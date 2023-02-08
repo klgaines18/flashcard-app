@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useHistory, useRouteMatch, Switch, Route } from "react-router-dom";
+import { useParams, Link, useHistory, useRouteMatch } from "react-router-dom";
 import { deleteDeck, listDecks, readDeck } from "../utils/api";
 import ErrorMessage from "../Layout/ErrorMessage";
 import CardList from "../card/CardList";
-import DeckList from "../home/DeckList";
 
 function Deck( { setDecks } ) {
   const [deck, setDeck] = useState({ cards: [] });
   const [error, setError] = useState(undefined);
   const [cards, setCards] = useState([])
   const { deckId } = useParams(); 
-  const { path, url } = useRouteMatch();
+  const { url } = useRouteMatch();
   const history = useHistory();
 
   useEffect(() => {
